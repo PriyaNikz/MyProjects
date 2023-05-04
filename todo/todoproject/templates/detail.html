@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+
+<div class="col-md-6">
+            <p style="font-family:Serif;font-size:40px;background-color:#ccffcc;color:#009999">TaskList</p>
+            <div class="card" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">
+                <div class="card-body">
+                   <h5 class="card-title">{{task1.task}}</h5>
+                   <p>{{task1.priority}}</p>
+                    <p>{{task1.date}}</p>
+                   <a class="btn btn-danger" href="{% url 'delete' task1.id %}">Done</a>
+                    <a class="btn btn-success" href="{% url 'update' task1.id %}">Edit</a><br>
+               </div>
+            </div>
+            <br>
+        </div>
+
+{% endblock %}
