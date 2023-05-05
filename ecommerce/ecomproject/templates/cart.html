@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block metadescription %}
+    Cart Page---->Review your items and place your order
+{% endblock %}
+
+{% block title %}
+         Cart-Pink
+{% endblock %}
+
+{% block content %}
+{% if not cart_items %}
+<div>
+    <div class="text-center">
+    <br>
+    <h1 class="text-center my_title">
+        Your shopping cart is empty!
+    </h1>
+    <br>
+    <p class="text-center">
+        Please click <a href="{% url 'ecomapp:AllProdCat' %}">here</a>to continue shopping
+    </p>
+    </div>
+</div>
+{% else %}
+<div>
+    <div class="text-center">
+    <br>
+    <h1 class="text-center my_title">
+            Your Shopping Cart
+    </h1>
+    <br>
+    </div>
+</div>
+<div class="row mx-auto">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-6 text-center">
+        <table class="table my_table">
+            <thead class="my_thead">
+                <tr>
+                    <th colspan="5">
+                        Your items
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for cart_item in cart_items %}
+            <tr>
+                <td>
+                    <a href="cart_item.product.get_absolute_url"><img src="{{cart_item.product.image.url}}" alt="" height="150px;" width="150px;" class="float-left rounded image"></a>
+                </td>
+
+                <td class="text-left">
+                    {{ cart_item.product.name }}
+                    <br>
+                    SKU: {{ cart_item.product.id }}
+                    <br>
+                    Price: $ {{ cart_item.product.price }}
+                    <br>
+                    Qty: {{cart_item.qty}} x $ {{cart_item.product}}
+                </td>
+                <td>
+                    $ {{cart_item.SubTotal}}
+                </td>
+                {% if cart_item.qty < cart_item.product.stock %}
+                <td>
+                    <a href="{% url 'cart:add_cart' cart_item.product.id %}" class="custom_a"><i class="fa fa-plus custom_icon"></i></a>
+                    &nbsp;<a href="{% url 'cart:cart_remove' cart_item.product.id %}" class="custom_a"><i class="fa fa-minus custom_icon"></i></a>
+                    &nbsp;<a href="{% url 'cart:delete' cart_item.product.id %}" class="custom_icon"><i class="fa fa-trash custom_icon"></i></a>
+                </td>
+                {% else %}
+                <td>
+                    &nbsp;<a href="{% url 'cart:cart_remove' cart_item.product.id %}" class="custom_a"><i class="fa fa-minus custom_icon"></i></a>
+                    &nbsp;<a href="{% url 'cart:delete' cart_item.product.id %}" class="custom_icon"><i class="fa fa-trash custom_icon"></i></a>
+                </td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+            </tbody>
+
+        </table>
+    </div>
+    <div class="col-12 col-sm-12 col-md-12 col-lg-6 text-center">
+        <table class="table my_table">
+            <thead class="my_thead">
+                <tr>
+                    <th>
+                        Check Out
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                    <br>
+                        Please review the items in your cart and place your order
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-left">
+                         Total product price is: <strong>{{ total }}</strong>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <br><br>
+            <div class="row mx-auto">
+                <div class="bt1">
+                <a href="{% url 'ecomapp:AllProdCat' %}" class="btn btn-secondary btn-sm">Continue shopping</a>
+                <a href="{% url 'ecomapp:AllProdCat' %}" class="btn btn-secondary btn-sm">Place your order</a>
+                </div>
+            </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
