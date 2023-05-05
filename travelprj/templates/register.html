@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Signup</title>
+</head>
+<style>
+    body{
+  font-family: Helvetica;
+  background-color: #5D6D7E ;
+}
+.container {
+    padding: 50px;
+  background-color: #48C9B0 ;
+}
+
+input[type=text], input[type=password] , input[type=email]{
+  width: 30%;
+  padding: 10px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+.registerbtn{
+background-color: #1A5276;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  cursor: pointer;
+  width: 20%;
+}
+h1{
+ font-family: Arial;
+ color:#1A5276;
+}
+</style>
+<body>
+<form action="register" method="POST">
+     {% csrf_token %}
+    <div class="container">
+        <h1>Sign Up </h1>
+    <input type="text" name="firstname" value="First Name">
+    <input type="text" name="first_name" placeholder="Enter your Firstname"><br><br>
+    <input type="text" name="Lastname" value="Last Name">
+    <input type="text" name="last_name" placeholder="Enter your Lastname"><br><br>
+    <input type="text" name="E-mail" value="E-mail">
+    <input type="email" name="email" placeholder="Enter your E-mail"><br><br>
+    <input type="text" name="uname" value="User Name">
+    <input type="text" name="username" placeholder="Enter your Username"><br><br>
+    <input type="text" name="password" value="Password">
+    <input type="password" name="password" placeholder="Enter your Password"><br><br>
+    <input type="text" name="password1" value="Confirm Password">
+    <input type="password" name="cpassword" placeholder="Confirm your password"><br><br>
+    <button type="submit" class="registerbtn">Register</button>
+    </div>
+</form>
+{% for i in messages %}
+<h2>{{i}}</h2>
+{% endfor %}
+</body>
+</html>
