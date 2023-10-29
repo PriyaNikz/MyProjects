@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+</head>
+<style>
+body{
+  font-family: Helvetica;
+  background-color:#5D6D7E;
+}
+.container {
+    padding: 50px;
+  background-color: #EC7063;
+}
+
+input[type=text], input[type=password] {
+  width: 30%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+.loginbtn{
+background-color: #641E16 ;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  cursor: pointer;
+  width: 20%;
+}
+h1{
+ font-family: Arial;
+ color:#6E2C00 ;
+}
+</style>
+<body>
+<form action="{% url 'login' %}" method="POST">
+     {% csrf_token %}
+    <div class="container">
+        <h1>Login </h1>
+    <input type="text" name="uname" value="User Name">
+    <input type="text" name="username" placeholder="Enter your Username"><br><br>
+    <input type="text" name="password1" value="Password">
+    <input type="password" name="password" placeholder="Enter your Password"><br><br>
+        <input type="submit" name="Submit">
+        <a href="/register/">Register</a>
+    </div>
+</form>
+</body>
+</html>

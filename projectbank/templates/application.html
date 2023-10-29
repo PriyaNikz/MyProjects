@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <title>Application</title>
+</head>
+<style>
+ body{
+ font-family: Helvetica;
+ background-color: #5D6D7E ;
+}
+.container {
+ padding: 50px;
+ background-color: #48C9B0 ;
+}
+
+input[type=text], input[type=password] , input[type=email]{
+ width: 30%;
+ padding: 10px;
+ margin: 5px 0 22px 0;
+ display: inline-block;
+ border: none;
+ background: #f1f1f1;
+}
+.apnbtn{
+background-color: #1A5276;
+ color: white;
+ padding: 16px 20px;
+ margin: 8px 0;
+ cursor: pointer;
+ width: 20%;
+}
+h1{
+ font-family: Arial;
+ color:#1A5276;
+}
+</style>
+<body>
+<form action="{% url 'application' %}" method="POST">
+ {% csrf_token %}
+ <div class="container">
+ <h1>Application Form </h1>
+ <input type="text" name="name" value="Name">
+ <input type="text" name="name" placeholder="Enter your name"><br><br>
+ <input type="text" name="dob" value="DOB">
+ <input type="date" name="dob" id="dob"><br><br>
+ <input type="text" name="age" value="Age">
+ <input type="text" name="age" placeholder="Enter your age"><br><br>
+ <input type="text" name="gender" value="Gender">
+ <input type="radio" id="male" name="gender" value="Male">
+ <label for="male">Male</label>
+ <input type="radio" id="female" name="gender" value="Female">
+ <label for="female">Female</label>
+ <input type="radio" id="trans" name="gender" value="Trans">
+ <label for="trans">Trans</label><br><br>
+ <input type="text" name="phone" value="Phone">
+ <input type="tel" name="phone" id="phone" ><br><br>
+ <input type="text" name="email" value="E-mail">
+ <input type="email" name="email" placeholder="Enter your E-mail"><br><br>
+ <input type="text" name="address" value="Address">
+ <input type="text" name="address" placeholder="Enter your Address"><br><br>
+ <input type="text" name="district" value="District">
+ <select name="district" id="district">
+  <option value="Thiruvananthapuram">Thiruvananthapuram</option>
+  <option value="Kollam">Kollam</option>
+  <option value="Pathanamthitta">Pathanamthitta</option>
+  <option value="Alappuzha">Alappuzha</option>
+  <option value="Kottayam">Kottayam</option>
+  <option value="Idukki">Idukki</option>
+  <option value="Ernakulam">Ernakulam</option>
+  <option value="Thrissur">Thrissur</option>
+  <option value="Palakkad">Palakkad</option>
+  <option value="Malappuram">Malappuram</option>
+  <option value="Kozhikode">Kohikode</option>
+  <option value="Wayanad">Wayanad</option>
+  <option value="Kannur">Kannur</option>
+  <option value="Kasargod">Kasargod</option>
+ </select><br><br>
+ <input type="text" name="branch" value="Branch">
+ <select name="branch" id="branch">
+  <option value="Palakkad">Palakkad</option>
+  <option value="Thrissur">Thrissur</option>
+  <option value="Malappuram">Malappuram</option>
+  <option value="Kochi">Kochi</option>
+  <option value="Trivandrum">Trivandrum</option>
+ </select><br><br>
+ <input type="text" name="account" value="Account Type">
+ <select name="account" id="account">
+  <option value="savings">Savings Account</option>
+  <option value="current">Current Account</option>
+  <option value="student">Student Account</option>
+  <option value="loan">Loan Account</option>
+  <option value="nri">NRI/NRE Account</option>
+ </select><br><br>
+ <input type="text" name="material" value="Materials to Provide">
+ <select name="material" id="material">
+  <option value="crcard">Credit Card</option>
+  <option value="drcard">Debit Card</option>
+  <option value="chqbook">Cheque Book</option>
+ </select><br><br>
+ <input type="submit" name="Submit">
+ </div>
+</form>
+{% for i in messages %}
+<h2>{{i}}</h2>
+{% endfor %}
+</body>
+</html>
