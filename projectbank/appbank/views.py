@@ -25,7 +25,7 @@ def application(request):
             return redirect('login')
         else:
             application = Applicant.objects.get_or_create(name=name, dob=dob, age=age, gender=gender, phone=phone,email=email, address=address, district=district,
-                                                          branch=branch,account=account, material=material)
+                                            branch=branch,account=account, material=material)
             application.save()
             messages.info(request, "Application accepted!!")
             return redirect('login')
